@@ -1,7 +1,7 @@
-const express = require("express"),
-  mongoose = require("mongoose"),
-  bodyParser = require("body-parser"),
-  authRouter = require("./src/router/authRouter");
+import express from "express";
+import mongoose from "mongoose";
+import bodyParser from "body-parser";
+import authRouter from "./router/authRouter";
 
 const app = express();
 
@@ -16,10 +16,10 @@ mongoose.connect("mongodb://localhost:27017/btpresent", {
 });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function () {
+db.once("open", () => {
   console.log("we're connected!");
 });
 
-app.listen(PORT, function () {
+app.listen(PORT, () => {
   console.log("server has started");
 });
