@@ -1,12 +1,10 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const universitySchema = new mongoose.Schema({
-  id: String,
   name: String,
 });
 
 const courseSchema = new mongoose.Schema({
-  courseID: String,
   courseName: String,
   univID: {
     type: mongoose.Schema.Types.ObjectId,
@@ -36,7 +34,7 @@ const studentSchema = new mongoose.Schema({
   lastname: String,
   email: String,
   alternateEmail: String,
-  enumber: String,
+  enrollmentNumber: String,
   MACaddress: String,
   password: String,
   courses: [
@@ -75,24 +73,15 @@ const teacherAttendanceSchema = new mongoose.Schema({
   },
 });
 
-const University = mongoose.model("university", universitySchema);
-const Course = mongoose.model("course", courseSchema);
-const Student = mongoose.model("student", studentSchema);
-const Teacher = mongoose.model("teacher", teacherSchema);
-const StudentAttendance = mongoose.model(
+export const University = mongoose.model("university", universitySchema);
+export const Course = mongoose.model("course", courseSchema);
+export const Student = mongoose.model("student", studentSchema);
+export const Teacher = mongoose.model("teacher", teacherSchema);
+export const StudentAttendance = mongoose.model(
   "studentAttendance",
   studentAttendanceSchema
 );
-const TeacherAttendance = mongoose.model(
+export const TeacherAttendance = mongoose.model(
   "teacherAttendance",
   teacherAttendanceSchema
 );
-
-module.exports = {
-  Student,
-  University,
-  Course,
-  Teacher,
-  TeacherAttendance,
-  StudentAttendance,
-};
