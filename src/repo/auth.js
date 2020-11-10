@@ -22,8 +22,7 @@ export const signUpStudent = ({
     courses,
   })
     .then((student) => ({
-      universityId: student.univID,
-      enrollmentNo: student.enrollmentNumber,
+      id: student._id,
     }))
     .catch((err) => {
       return null;
@@ -47,7 +46,6 @@ export const signUpTeacher = ({
     univID: university,
   })
     .then((teacher) => ({
-      universityId: teacher.univID,
       id: teacher._id,
     }))
     .catch((err) => null);

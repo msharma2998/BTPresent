@@ -2,11 +2,13 @@ import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import authRouter from "./router/authRouter";
+import infoRouter from "./router/infoRouter";
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use("/auth", authRouter);
+app.use("/info", infoRouter);
 
 const PORT = process.env.PORT || 3000;
 mongoose.connect("mongodb://localhost:27017/btpresent", {

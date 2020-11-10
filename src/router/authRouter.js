@@ -20,8 +20,6 @@ router.post("/signup", (req, res) => {
     courses,
   } = req.body;
 
-  console.log(enrollNo);
-
   signUp({
     accountType,
     fName,
