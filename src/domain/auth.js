@@ -1,5 +1,6 @@
 import { signUpStudent, signUpTeacher } from "../repo/auth";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export const signUp = ({
   accountType,
@@ -40,7 +41,10 @@ export const signUp = ({
     return signUpPromise.then((response) => {
       if (response === null)
         return { message: "There was some error, please try again later" };
-      return response;
+      const token = jwt.sign(response, process.env.JWT_SECRET, {
+        expiresIn: 15 * 60,
+      });
+      return { token };
     });
   });
 };

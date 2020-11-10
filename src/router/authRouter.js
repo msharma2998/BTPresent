@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { signUp } from "../domain/auth";
+import passport from "passport";
 const router = Router();
 
 router.post("/login", (req, res) => {
@@ -35,5 +36,13 @@ router.post("/signup", (req, res) => {
     res.json(resp);
   });
 });
+
+router.post(
+  "/check",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json(true);
+  }
+);
 
 export default router;

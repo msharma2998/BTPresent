@@ -50,3 +50,18 @@ export const signUpTeacher = ({
     }))
     .catch((err) => null);
 };
+
+export const searchById = (id) => {
+  const searchStudent = Student.findById(id)
+    .then((student) => student)
+    .catch(() => null);
+
+  const searchTeacher = Teacher.findById(id)
+    .then((teacher) => teacher)
+    .catch(() => null);
+
+  return Promise.all([searchStudent, searchTeacher]).then((results) => {
+    if (results[0] == null && results[1] == null) return null;
+    return results[0] || results[1];
+  });
+};

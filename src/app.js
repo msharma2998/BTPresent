@@ -1,14 +1,19 @@
 import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
+import passport from "passport";
+import initialiseJwt from "./domain/passportStrategies";
 import authRouter from "./router/authRouter";
 import infoRouter from "./router/infoRouter";
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(passport.initialize());
 app.use("/auth", authRouter);
 app.use("/info", infoRouter);
+
+initialiseJwt(passport);
 
 const PORT = process.env.PORT || 3000;
 mongoose.connect("mongodb://localhost:27017/btpresent", {
